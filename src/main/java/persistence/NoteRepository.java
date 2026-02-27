@@ -19,5 +19,9 @@ public class NoteRepository {
                 MongoClientSettings.getDefaultCodecRegistry(),
                 fromProviders(PojoCodecProvider.builder().automatic(true).build())
         );
+        MongoDatabase database = MongoDBConnection.getDatabase()
+                .withCodecRegistry(pojoCodecRegistry);
+
+        this.collection = database.getCollection("notes", Note.class);
     }
 }
