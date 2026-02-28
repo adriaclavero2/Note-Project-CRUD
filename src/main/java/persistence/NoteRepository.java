@@ -24,4 +24,7 @@ public class NoteRepository {
 
         this.collection = database.getCollection("notes", Note.class);
     }
+    public void save(Note note) {
+        collection.insertOne(note);
+    }
 }
