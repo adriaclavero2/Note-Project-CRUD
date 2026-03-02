@@ -5,8 +5,12 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import config.MongoDBConnection;
 import model.Note;
+import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
@@ -26,5 +30,13 @@ public class NoteRepository {
     }
     public void save(Note note) {
         collection.insertOne(note);
+    }
+
+    public List<Note> findAll() {
+        return collection.find().into(new ArrayList<>());
+    }
+
+    public void deleteByTitle(String title) {
+        collection.deleteOne(new Document("title", title));
     }
 }
