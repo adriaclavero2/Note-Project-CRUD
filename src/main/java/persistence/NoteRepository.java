@@ -3,6 +3,8 @@ package persistence;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.result.DeleteResult;
+import com.mongodb.client.result.UpdateResult;
 import config.MongoDBConnection;
 import model.Note;
 import org.bson.Document;
@@ -36,7 +38,18 @@ public class NoteRepository {
         return collection.find().into(new ArrayList<>());
     }
 
-    public void deleteByTitle(String title) {
-        collection.deleteOne(new Document("title", title));
+    public long deleteByTitle(String title) {
+        DeleteResult result = collection.deleteOne(new Document("title", title));
+        return result.getDeletedCount();
     }
+
+    public long update(String title, String newContent) {
+        Document query = new Document("title", title);
+
+        Document update = new Document("$set", new Document("content", newContent));
+
+        UpdateResult result = collection.updateOne(query, update);
+        return result.getModifiedCount();
+    }
+
 }
