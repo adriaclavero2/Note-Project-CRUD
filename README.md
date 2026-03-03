@@ -47,8 +47,9 @@ mvn compile exec:java -Dexec.mainClass="example.Main"
 
 Bash
 mvn test
+*******************************
+🧩 **Diagrams and Technical Decisions**
 
-🧩 Diagrams and Technical Decisions
 Layered Architecture: Organized into model, service, persistence (Repository), and config to ensure high maintainability.
 
 Defensive Programming: Use of custom exceptions instead of console prints in the Service layer to allow for flexible error handling.
