@@ -27,3 +27,30 @@ Develop a robust system to Create, Read, Update, and Delete (CRUD) notes. Each n
 1. **Clone the repository**:
    ```bash
    git clone [https://github.com/adriaclavero2/Note-Project-CRUD.git](https://github.com/adriaclavero2/Note-Project-CRUD.git)
+2. **Environment Variables:**
+    Create a .env file in the root directory and configure your credentials:
+
+MONGO_USER=your_user
+MONGO_PASSWORD=your_password
+MONGO_HOST=localhost
+MONGO_PORT=27017
+MONGO_DB=your_db_name
+
+3. **Application Execution:**
+    Run the Main.java file from your IDE or use Maven:
+
+Bash
+mvn compile exec:java -Dexec.mainClass="example.Main"
+
+4. **Testing:**
+    To run the integration and unit tests:
+
+Bash
+mvn test
+
+🧩 Diagrams and Technical Decisions
+Layered Architecture: Organized into model, service, persistence (Repository), and config to ensure high maintainability.
+
+Defensive Programming: Use of custom exceptions instead of console prints in the Service layer to allow for flexible error handling.
+
+Integration Tests (AAA Pattern): Tests follow the Arrange-Act-Assert structure, interacting with a real MongoDB instance to guarantee that queries and data mapping work as expected.
