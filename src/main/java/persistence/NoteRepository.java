@@ -52,4 +52,7 @@ public class NoteRepository {
         return result.getModifiedCount();
     }
 
+        public Note findByTitle(String title) {
+            return collection.find(new Document("title", title)).first();
+        }
 }
